@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <Button onClick={sendMessage} >Click </Button>
-      <h1>aa</h1>
+      <h1>ボタンを押すと、下にHelloと表示される</h1>
       <h1>{received}</h1>
       {/* <Gauge score={index} />
       <Monitor useIndex={useIndex} /> */}
