@@ -1,0 +1,33 @@
+      <Container
+      style={{
+        backgroundColor: "#161a1e",
+        innerHeight: 100,
+        outerHeight: 100
+      }} 
+      >
+        {/* <span className="square border border-1"></span>
+          <span className="square border border-1"></span> */}
+        <Row>
+          <Col xs={6} md={4}>arstasrta</Col>
+
+
+
+          <Col className="h-100 d-inline-block"
+            style={{
+              backgroundColor: "#17181f"
+              
+            }} 
+            xs={12} md={8}>
+              
+          <Row 
+            className="h-50 d-inline-block"
+          ><Gauge score={index} />
+          </Row>
+          <Row 
+            // className="h-50 d-inline-block"
+          ><Monitor useIndex={useIndex} /></Row>
+          </Col>
+        </Row>
+
+
+      </Container>
