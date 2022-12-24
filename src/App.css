@@ -36,3 +36,129 @@
     transform: rotate(360deg);
   }
 } */
+
+
+.title{
+  font-size: 50px;
+  font-weight: 600;
+  padding:10px;
+  /* background-color: #0077B6; */
+}
+
+.info{
+  position: fixed;
+  right:15px;
+  bottom:15px;
+  width: 45vw;
+  height: 50vh;
+  /* background-color: #4F772D; */
+  /* background-color: #90A955; */
+
+  /* background-color: #31572C; */
+  /* background-color: #0077B6; */
+  background-color: rgba(20,20,20,0.5);
+  color: aliceblue;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+.monitor{
+  position: fixed;
+  left:30px;
+  bottom:15px;
+  width: 50vw;
+  height: 49vh;
+  /* background-color: #31572C; */
+  /* background-color: #90A955; */
+  /* background-color: #0077B6; */
+  /* background-color: #03045E; */
+  color: aliceblue;
+  /* padding: 15px; */
+  border-radius: 60px;
+}
+
+.bottom{
+  position: fixed;
+  left:7px;
+  right:7px;
+  bottom:7px;
+  /* width: 50vw; */
+  height: 55vh;
+  /* background-color: #31572C; */
+  background-color: #0077B6;
+  /* background-color: #025c1c; */
+  color: aliceblue;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+
+.minigauge{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  /* left:7px; */
+  /* right:7px; */
+  bottom:7px;
+  /* width: 50vw; */
+  /* height: 55vh; */
+  color: aliceblue;
+  padding: 15px;
+  /* border-radius: 30px; */
+}
+
+
+
+.button{
+  font-size: 35px;
+  background-color: #0077B6;
+  color: whitesmoke;
+  padding: 10px;
+  margin: 7px;
+  border-radius: 15px;
+}
+
+.button:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #57a9d5;
+  transition: 0.2s ;
+
+}
+
+
+.center{
+  align-items: center;
+  text-align: center;
+}
+
+.team-index{
+  position: fixed;
+  left:7px;
+  right:7px;
+  top:7px;
+  /* width: 50vw; */
+  height: 35vh;
+  /* background-color: #31572C; */
+  background-color: #0077B6;
+  /* background-color: #025c1c; */
+  color: aliceblue;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+.sendStart{
+  position: fixed;
+  left:70px;
+  /* right:7px; */
+  top:20vh;
+  /* width: 50vw; */
+  /* height: 18vh; */
+  /* background-color: #31572C; */
+  background-color: #003d5e;
+  /* background-color: #025c1c; */
+  color: aliceblue;
+  padding: 15px;
+  border-radius: 30px;
+
+}

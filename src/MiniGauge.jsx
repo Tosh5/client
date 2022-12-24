@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import GaugeProvider from './GaugeProvider';
 
 
-const Guage = (props) => {
+const MiniGuage = (props) => {
   const { score } = props;
 
   // function for calculating the color
@@ -20,8 +20,9 @@ const Guage = (props) => {
   return (
     <div 
     style={{
-      width: '30vw', height: '40vh', 
-      marginRight: 'auto', marginLeft: 'auto', 
+      width: '18vw', height: '20vh', 
+      marginRight: '20px', marginLeft: 'auto', 
+      marginBottom: '20px', marginTop: 'auto',
       // alignItems: 'left', alignContent: 'left'
     }}
     // style={{width: '30vw', height: '40vh', marginRight: '5vw', marginLeft: 'auto', alignItems: 'right', alignContent: 'right'}}
@@ -30,7 +31,7 @@ const Guage = (props) => {
         {(value) => (
           <CircularProgressbar
             value={value}
-            text={`${value} %`}
+            text={`${value}`}
             circleRatio={0.7} /* Make the circle only 0.7 of the full diameter */
             styles={{
               trail: {
@@ -46,6 +47,7 @@ const Guage = (props) => {
               },
               text: {
                 fill: '#ddd',
+                fontSize: '40px',
               }
             }
             }
@@ -57,4 +59,4 @@ const Guage = (props) => {
   );
 };
 
-export default Guage;
+export default MiniGuage;

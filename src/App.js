@@ -1,60 +1,86 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Card, Button } from 'react-bootstrap';
-import io from "socket.io-client";
-
+import * as React from 'react';
 import './App.css';
 import Gauge from './Gauge';
-import { useEffect, useState } from 'react';
+import MiniGauge from './MiniGauge';
+import { useState } from 'react';
 import Monitor from './Monitor';
+// import { Info } from './Info';
+import StartSupport from './StartSupport';
 
-
-const socket = io.connect("http://localhost:8000")
-
+import io from "socket.io-client";
+import CreateRand from './CreateRand';
+const socket = io.connect("http://43.207.73.189:8000")
+// const socket = io.connect("http://localhost:8000")
+// ↑ 他のコンポーネントでも、同様の記載あり。接続先変更時は合わせて変更せよ
 
 function App() {
-
   const [index, useIndex] = useState(0)
-  const [received, setReceived] = useState("")
+  // const [received, setReceived] = useState("サーバと接続できていません")
+  // const [totalIndex, setTotalIndex] = useState('')
+  const [info, useInfo] = useState('応援してください')
+  const [num_participants, setNumParticipants] = useState()
+  // const [rand, setRand] = useState()
 
-  const hello = "hello"
+  // socket.emit("myIndex" , {myIndex : 'index'})
+  socket.on("num_participants", (data) => {
+    setNumParticipants(data)
+    console.log(data)
+  })
 
-  const sendMessage = () =>{
-    socket.emit("send_message", {message : "hello"})
-  }
+  socket.on("rand", (data) => {
+    // setRand(data)
+    // socket.emit("myIndex" , {myIndex : 'index'})
 
-  const render = () =>{
-    socket.on("receive_message", (data) => {
-    console.log(data.message)
-    // alert(data.message)
-    // setReceived(data.message)
-    })
-  }
+    socket.emit('myindex', {myindex : index})
+  })
 
-  render();
+
   
 
+  // const sendMyIndex = () =>{
+  //   socket.emit("myIndex" , {myIndex : 'index'})
+  // }
 
+ 
 
-  // useEffect(() =>{
-  //   render()
-  // },[])
+  // sendMyIndex()
 
   return (
     <div className="App">
-      <Button onClick={sendMessage} >Click </Button>
-      <h1>ボタンを押すと、下にHelloと表示される</h1>
-      <h1>{received}</h1>
-      {/* <Gauge score={index} />
-      <Monitor useIndex={useIndex} /> */}
+      <div className="team-index">
+        <h1 className='title'>チーム全体の応援</h1>
+        <button 
+          className='button' 
+          // onClick={sendMyIndex}
+        >arstarsta</button>
+        <CreateRand />
 
-      
+        <Gauge score={index} />
+        <StartSupport 
+          num_participants={num_participants}
+          index={index}
+          // rand={rand}
+          />
+      </div>
 
-      
+      <div className='bottom'>
+        <h1 className='title'>あなたの応援</h1>
+        <div className='monitor'>
+            {/* <h1>メッセージ</h1> */}
+            <Monitor useIndex={useIndex} /> 
+        </div>  
 
-      
-
+        <div className='info'>
+            <h3>メッセージ：</h3>
+            <h1>{info}</h1>
+            <div className="minigauge">
+              <h1>あなたの応援熱量</h1>
+              <br />
+              {/* <h1 className='score'>{index}</h1> */}
+              <MiniGauge score={index} />
+            </div>
+        </div>
+      </div>
     </div>
   );
 }

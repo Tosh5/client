@@ -136,9 +136,9 @@ const Monitor = (props) => {
 				{/* <button className={styles.button} onClick={OutputData}>
 					Output Data
 				</button> */}
-                <h1>画像解析中</h1>
-				<h3>{String(handC)}</h3>
-				<h3 className='index2'>{String(index2)}</h3>
+                {/* <h1>画像解析中</h1> */}
+				{/* <h3>{String(handC)}</h3>
+				<h3 className='index2'>{String(index2)}</h3> */}
 			</div>
 		</div>
 	)
