@@ -45,12 +45,28 @@ function App() {
   // const sendMyIndex = () =>{
   //   socket.emit("myIndex" , {myIndex : 'index'})
   // }
-  const sendTest = () =>{
+  const sendTest = async () =>{
     console.log('running sendTest')
-    socket.emit("send_message" , "testmsg")
+    await socket.emit("send_message" , "testmsg")
     // socket.emit("send_message" , {myIndex : 'index'})
     console.log('ran sendTest')
   }
+
+
+  // const asyncFunc = async (mes) => {
+  //   const waitTime = Math.floor((Math.random() * 100) + 1)
+  //   await sleep(waitTime)
+  //   console.log(mes)
+  //   return `result_${mes}`
+  // }
+
+  // async function appleAsync(){
+  //   let val = await apple(1)  //関数appleでresolveされた値(ここでは2)がvalに代入される
+  //   val = await apple(val)　　 //3がvalに代入される
+  //   val = await apple(val)　　 //4がvalに代入される
+  // 　console.log("終了！")
+  // }
+
 
   const [msg, setMsg] = useState('original msg')
 
@@ -79,11 +95,11 @@ function App() {
         <CreateRand />
 
         <Gauge score={index} />
-        {/* <StartSupport 
+        <StartSupport 
           num_participants={num_participants}
           index={index}
           // rand={rand}
-          /> */}
+          />
       </div>
 
       <div className='bottom'>
