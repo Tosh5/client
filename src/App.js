@@ -172,7 +172,7 @@ function App() {
         callback(null, 'one');
       }, 
       function(callback) {
-        console.log(data)
+        // console.log(data)
         callback(null, 'two');
       }, 
       function(callback) {
