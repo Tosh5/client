@@ -83,15 +83,34 @@ function App() {
   //   );
   // })
 
+  // socket.on('receive_message', function(data) {
+  //   async.waterfall([
+  //     console.log('received_message'),
+  //     console.log(data),
+  //     setMsg(data),
+  //     console.log('setMsg done')
+  //   ], function(err,result) {
+  //   });
+  // })
+
   socket.on('receive_message', function(data) {
     async.waterfall([
-      console.log('received_message'),
-      console.log(data),
-      setMsg(data),
-      console.log('setMsg done')
+      function(callback) {
+        console.log('received_message')
+      }, 
+      function(callback) {
+        console.log(data)
+      }, 
+      function(callback) {
+        setMsg(data)
+      }, 
+      function(callback) {
+        console.log('setMsg done')
+      }, 
     ], function(err,result) {
     });
   })
+
 
 
 
