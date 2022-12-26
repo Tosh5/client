@@ -89,7 +89,7 @@ function App() {
       console.log(data),
       setMsg(data),
       console.log('setMsg done')
-    ], function(err) {
+    ], function(err,result) {
     });
   })
 
