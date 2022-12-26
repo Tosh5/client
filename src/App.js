@@ -47,7 +47,8 @@ function App() {
   // }
   const sendTest = () =>{
     console.log('running sendTest')
-    socket.emit("send_message" , {myIndex : 'index'})
+    socket.emit("send_message" , "testmsg")
+    // socket.emit("send_message" , {myIndex : 'index'})
     console.log('ran sendTest')
   }
 
