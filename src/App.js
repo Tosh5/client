@@ -73,7 +73,8 @@ function App() {
         <button 
           className='button' 
           onClick={sendTest}
-        >サーバにメッセージを送る。それにより、下のメッセージが書き変わる</button>
+        >サーバに送信</button>
+        <h3>サーバにメッセージを送る。それにより、下のメッセージが書き変わる</h3>
         <h2>{msg}</h2>
         <CreateRand />
 
