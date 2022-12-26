@@ -166,7 +166,7 @@ function App() {
   // })
 
   socket.on('receive_message', function(data) {
-    async.waterfall([
+    async.series([
       function(callback) {
         console.log('received_message')
         callback(null, 'one');
@@ -176,7 +176,7 @@ function App() {
         callback(null, 'two');
       }, 
       function(callback) {
-        // setMsg(data)
+        setMsg(data)
         callback(null, 'three');
       }, 
       function(callback) {
