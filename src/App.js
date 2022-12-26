@@ -139,7 +139,7 @@ function App() {
   //   });
   // })
 
-
+  // let arg1 = ''
 
   socket.on('receive_message', function(data) {
     async.waterfall([
@@ -147,15 +147,15 @@ function App() {
         console.log('received_message')
         callback(null, 'one');
       }, 
-      function(callback) {
+      function(arg1, callback) {
         console.log(data)
         callback(null, 'two');
       }, 
-      function(callback) {
+      function(arg1, callback) {
         setMsg(data)
         callback(null, 'three');
       }, 
-      function(callback) {
+      function(arg1, callback) {
         console.log('setMsg done')
         callback(null, 'four');
       }, 
