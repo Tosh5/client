@@ -57,7 +57,7 @@ function App() {
   socket.on("receive_message", (data) => {
     console.log('received_message')
     console.log(data)
-    // setMsg(data)
+    setMsg(data)
     // socket.emit('myindex', {myindex : index})
   })
 
