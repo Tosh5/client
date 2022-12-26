@@ -141,6 +141,8 @@ function App() {
 
   // let arg1 = ''
   // これでも大量に以下の処理が実行されてしまう。
+  // ただ、「Uncaught (in promise) TypeError: t is not a function」
+  // というエラーは出なくなる。
   // socket.on('receive_message', function(data) {
   //   async.waterfall([
   //     function(callback) {
@@ -174,7 +176,7 @@ function App() {
         callback(null, 'two');
       }, 
       function(callback) {
-        setMsg(data)
+        // setMsg(data)
         callback(null, 'three');
       }, 
       function(callback) {
