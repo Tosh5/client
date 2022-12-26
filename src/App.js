@@ -83,6 +83,9 @@ function App() {
   //   );
   // })
 
+
+  // 問題なく動くが、uncaught (in promise)error
+  // とかいう、謎のエラーが出てくる
   socket.on('receive_message', function(data) {
     async.waterfall([
       console.log('received_message'),
