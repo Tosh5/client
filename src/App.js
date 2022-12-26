@@ -71,13 +71,29 @@ function App() {
   const [msg, setMsg] = useState('original msg')
 
   socket.on("receive_message", async (data) => {
-    await console.log('received_message')
-    await console.log(data)
-    await setMsg(data)
-    await console.log('setMsg done')
-    // socket.emit('myindex', {myindex : index})
+    async.waterfall([
+      console.log('received_message'),
+      await console.log(data),
+      await setMsg(data),
+      await console.log('setMsg done')
+    ], function (err, result) {
+    }
+    );
   })
 
+
+
+
+
+
+  // 以下の設定では、ボタンを押すたびに、
+  // 過去の手の座標の認識回数分だけconsole.logが出力されてしまう
+  // socket.on("receive_message", async (data) => {
+  //   await console.log('received_message')
+  //   await console.log(data)
+  //   await setMsg(data)
+  //   await console.log('setMsg done')
+  // })
  
  
 
