@@ -140,6 +140,28 @@ function App() {
   // })
 
   // let arg1 = ''
+  // これでも大量に以下の処理が実行されてしまう。
+  // socket.on('receive_message', function(data) {
+  //   async.waterfall([
+  //     function(callback) {
+  //       console.log('received_message')
+  //       callback(null, 'one');
+  //     }, 
+  //     function(arg1, callback) {
+  //       console.log(data)
+  //       callback(null, 'two');
+  //     }, 
+  //     function(arg1, callback) {
+  //       setMsg(data)
+  //       callback(null, 'three');
+  //     }, 
+  //     function(arg1, callback) {
+  //       console.log('setMsg done')
+  //       callback(null, 'four');
+  //     }, 
+  //   ], function(err,result) {
+  //   });
+  // })
 
   socket.on('receive_message', function(data) {
     async.waterfall([
@@ -147,15 +169,15 @@ function App() {
         console.log('received_message')
         callback(null, 'one');
       }, 
-      function(arg1, callback) {
+      function(callback) {
         console.log(data)
         callback(null, 'two');
       }, 
-      function(arg1, callback) {
+      function(callback) {
         setMsg(data)
         callback(null, 'three');
       }, 
-      function(arg1, callback) {
+      function(callback) {
         console.log('setMsg done')
         callback(null, 'four');
       }, 
