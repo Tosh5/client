@@ -20,6 +20,29 @@ const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 // ↑ 他のコンポーネントでも、同様の記載あり。接続先変更時は合わせて変更せよ
 
+// socket.on('receive_message', function(data) {
+//   async.waterfall([
+//     function(callback) {
+//       console.log('received_message')
+//       callback(null, 'one');
+//     }, 
+//     function(callback) {
+//       console.log(data)
+//       callback(null, 'two');
+//     }, 
+//     function(callback) {
+//       setMsg(data)
+//       callback(null, 'three');
+//     }, 
+//     function(callback) {
+//       console.log('setMsg done')
+//       callback(null, 'four');
+//     }, 
+//   ], function(err,result) {
+//   });
+// })
+
+
 function App() {
   const [index, useIndex] = useState(0)
   // const [received, setReceived] = useState("サーバと接続できていません")
@@ -86,15 +109,15 @@ function App() {
 
   // 問題なく動くが、uncaught (in promise)error
   // とかいう、謎のエラーが出てくる
-  socket.on('receive_message', function(data) {
-    async.waterfall([
-      console.log('received_message'),
-      console.log(data),
-      setMsg(data),
-      console.log('setMsg done')
-    ], function(err,result) {
-    });
-  })
+  // socket.on('receive_message', function(data) {
+  //   async.waterfall([
+  //     console.log('received_message'),
+  //     console.log(data),
+  //     setMsg(data),
+  //     console.log('setMsg done')
+  //   ], function(err,result) {
+  //   });
+  // })
 
 
   // 回数を繰り返すごとに、ますますreceived_messageのエラーが増える
@@ -116,6 +139,29 @@ function App() {
   //   });
   // })
 
+
+
+  socket.on('receive_message', function(data) {
+    async.waterfall([
+      function(callback) {
+        console.log('received_message')
+        callback(null, 'one');
+      }, 
+      function(callback) {
+        console.log(data)
+        callback(null, 'two');
+      }, 
+      function(callback) {
+        setMsg(data)
+        callback(null, 'three');
+      }, 
+      function(callback) {
+        console.log('setMsg done')
+        callback(null, 'four');
+      }, 
+    ], function(err,result) {
+    });
+  })
 
 
 
