@@ -9,6 +9,8 @@ import StartSupport from './StartSupport';
 
 import io from "socket.io-client";
 import CreateRand from './CreateRand';
+const async = require("async");
+
 // const socket = io.connect("https://43.207.73.189:8000")
 // const socket = io.connect("http://localhost:8000")
 // const socket = io.connect("https://hdpcvd23qq.ap-northeast-1.awsapprunner.com:8000")
@@ -70,15 +72,25 @@ function App() {
 
   const [msg, setMsg] = useState('original msg')
 
-  socket.on("receive_message", async (data) => {
+  // socket.on("receive_message", (data) => {
+  //   async.waterfall([
+  //     console.log('received_message'),
+  //     console.log(data),
+  //     setMsg(data),
+  //     console.log('setMsg done')
+  //   ], function (err, result) {
+  //   }
+  //   );
+  // })
+
+  socket.on('receive_message', function(data) {
     async.waterfall([
       console.log('received_message'),
-      await console.log(data),
-      await setMsg(data),
-      await console.log('setMsg done')
-    ], function (err, result) {
-    }
-    );
+      console.log(data),
+      setMsg(data),
+      console.log('setMsg done')
+    ], function(err) {
+    });
   })
 
 
