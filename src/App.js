@@ -109,15 +109,15 @@ function App() {
 
   // 問題なく動くが、uncaught (in promise)error
   // とかいう、謎のエラーが出てくる
-  // socket.on('receive_message', function(data) {
-  //   async.waterfall([
-  //     console.log('received_message'),
-  //     console.log(data),
-  //     setMsg(data),
-  //     console.log('setMsg done')
-  //   ], function(err,result) {
-  //   });
-  // })
+  socket.on('receive_message', function(data) {
+    async.waterfall([
+      console.log('received_message'),
+      console.log(data),
+      setMsg(data),
+      console.log('setMsg done')
+    ], function(err,result) {
+    });
+  })
 
 
   // 回数を繰り返すごとに、ますますreceived_messageのエラーが増える
@@ -165,6 +165,10 @@ function App() {
   //   });
   // })
 
+
+  // 大量に実行されてしまう構図は変わらず。
+  // また、手の動きを検知して、Consoleが積もれば積もるほど、
+  // 誤実行される回数は増える。
   socket.on('receive_message', function(data) {
     async.series([
       function(callback) {
