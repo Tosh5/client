@@ -79,11 +79,11 @@ function App() {
         <CreateRand />
 
         <Gauge score={index} />
-        <StartSupport 
+        {/* <StartSupport 
           num_participants={num_participants}
           index={index}
           // rand={rand}
-          />
+          /> */}
       </div>
 
       <div className='bottom'>
