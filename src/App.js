@@ -9,8 +9,13 @@ import StartSupport from './StartSupport';
 
 import io from "socket.io-client";
 import CreateRand from './CreateRand';
-const socket = io.connect("http://43.207.73.189:8000")
+// const socket = io.connect("https://43.207.73.189:8000")
 // const socket = io.connect("http://localhost:8000")
+// const socket = io.connect("https://hdpcvd23qq.ap-northeast-1.awsapprunner.com:8000")
+// const socket = io.connect("https://13.228.225.19:8000")
+// const socket = io.connect("https://cheer-app-server1.onrender.com:10000")
+// const socket = io.connect("http://cheer-app-server2:10000")
+const socket = io.connect("https://cheer-app-server1.onrender.com")
 // ↑ 他のコンポーネントでも、同様の記載あり。接続先変更時は合わせて変更せよ
 
 function App() {
@@ -40,7 +45,22 @@ function App() {
   // const sendMyIndex = () =>{
   //   socket.emit("myIndex" , {myIndex : 'index'})
   // }
+  const sendTest = () =>{
+    console.log('running sendTest')
+    socket.emit("send_message" , {myIndex : 'index'})
+    console.log('ran sendTest')
+  }
 
+  const [msg, setMsg] = useState('original msg')
+
+  socket.on("receive_message", (data) => {
+    console.log('received_message')
+    console.log(data)
+    // setMsg(data)
+    // socket.emit('myindex', {myindex : index})
+  })
+
+ 
  
 
   // sendMyIndex()
@@ -51,8 +71,9 @@ function App() {
         <h1 className='title'>チーム全体の応援</h1>
         <button 
           className='button' 
-          // onClick={sendMyIndex}
+          onClick={sendTest}
         >arstarsta</button>
+        <h2>{msg}</h2>
         <CreateRand />
 
         <Gauge score={index} />
