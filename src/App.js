@@ -70,10 +70,11 @@ function App() {
 
   const [msg, setMsg] = useState('original msg')
 
-  socket.on("receive_message", (data) => {
-    console.log('received_message')
-    console.log(data)
-    setMsg(data)
+  socket.on("receive_message", async (data) => {
+    await console.log('received_message')
+    await console.log(data)
+    await setMsg(data)
+    await console.log('setMsg done')
     // socket.emit('myindex', {myindex : index})
   })
 
