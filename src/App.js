@@ -44,6 +44,8 @@ const socket = io.connect("https://cheer-app-server1.onrender.com")
 
 
 function App() {
+  console.log('function App()が呼ばれたよ')
+  
   const [index, useIndex] = useState(0)
   // const [received, setReceived] = useState("サーバと接続できていません")
   // const [totalIndex, setTotalIndex] = useState('')
@@ -169,27 +171,27 @@ function App() {
   // 大量に実行されてしまう構図は変わらず。
   // また、手の動きを検知して、Consoleが積もれば積もるほど、
   // 誤実行される回数は増える。
-  socket.on('receive_message', function(data) {
-    async.series([
-      function(callback) {
-        console.log('received_message')
-        callback(null, 'one');
-      }, 
-      function(callback) {
-        // console.log(data)
-        callback(null, 'two');
-      }, 
-      function(callback) {
-        setMsg(data)
-        callback(null, 'three');
-      }, 
-      function(callback) {
-        console.log('setMsg done')
-        callback(null, 'four');
-      }, 
-    ], function(err,result) {
-    });
-  })
+  // socket.on('receive_message', function(data) {
+  //   async.series([
+  //     function(callback) {
+  //       console.log('received_message')
+  //       callback(null, 'one');
+  //     }, 
+  //     function(callback) {
+  //       // console.log(data)
+  //       callback(null, 'two');
+  //     }, 
+  //     function(callback) {
+  //       setMsg(data)
+  //       callback(null, 'three');
+  //     }, 
+  //     function(callback) {
+  //       console.log('setMsg done')
+  //       callback(null, 'four');
+  //     }, 
+  //   ], function(err,result) {
+  //   });
+  // })
 
 
 
