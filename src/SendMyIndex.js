@@ -5,6 +5,7 @@ const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 
 export default function SendMyIndex(props) {
+  console.log(props.myindex)
 //   const [count, setCount] = useState(0);
 
   const sendmyindex = async (props) =>{
