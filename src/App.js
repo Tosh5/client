@@ -108,9 +108,7 @@ function App() {
   //   );
   // })
 
-
-  // 問題なく動くが、uncaught (in promise)error
-  // とかいう、謎のエラーが出てくる
+  socket.off("receive_message") // <= この行を追加
   socket.on('receive_message', function(data) {
     async.waterfall([
       console.log('received_message'),
@@ -120,6 +118,19 @@ function App() {
     ], function(err,result) {
     });
   })
+
+
+  // 問題なく動くが、uncaught (in promise)error
+  // とかいう、謎のエラーが出てくる
+  // socket.on('receive_message', function(data) {
+  //   async.waterfall([
+  //     console.log('received_message'),
+  //     console.log(data),
+  //     setMsg(data),
+  //     console.log('setMsg done')
+  //   ], function(err,result) {
+  //   });
+  // })
 
 
   // 回数を繰り返すごとに、ますますreceived_messageのエラーが増える
