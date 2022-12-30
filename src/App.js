@@ -20,7 +20,7 @@ const socket = io.connect("https://cheer-app-server1.onrender.com")
 
 
 function App() {
-  console.log('function App()が呼ばれたよ')
+  // console.log('function App()が呼ばれたよ')
   
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
@@ -28,17 +28,8 @@ function App() {
 
   socket.on("num_participants", (data) => {
     setNumParticipants(data)
-    console.log(data)
+    // console.log(data)
   })
-
-  // socket.on("rand", (data) => {
-  //   // setRand(data)
-  //   // socket.emit("myIndex" , {myIndex : 'index'})
-
-  //   socket.emit('myindex', {myindex : index})
-  // })
-
-
 
   const sendTest = async () =>{
     console.log('running sendTest')
