@@ -25,7 +25,7 @@ function App() {
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
-  const [aveIndex, useAveIndex] = useState(0)
+  const [aveIndex, setAveIndex] = useState()
 
   socket.on("num_participants", (data) => {
     setNumParticipants(data)
@@ -33,7 +33,7 @@ function App() {
   })
 
   socket.on("aveIndex", (data) => {
-    useAveIndex(data)
+    setAveIndex(data)
     // console.log(data)
   })
 
