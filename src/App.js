@@ -8,10 +8,13 @@ import Monitor from './Monitor';
 import StartSupport from './StartSupport';
 import SendMyIndex from './SendMyIndex';
 
-import io from "socket.io-client";
 import CreateRand from './CreateRand';
+
+import io from "socket.io-client";
+
 const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
+
 
 
 

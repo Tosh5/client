@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./styles.css";
+import io from "socket.io-client";
 
-export default function App() {
+const async = require("async");
+const socket = io.connect("https://cheer-app-server1.onrender.com")
+
+export default function SendMyIndex(props) {
 //   const [count, setCount] = useState(0);
 
   const sendmyindex = async () =>{
