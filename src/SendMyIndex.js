@@ -4,25 +4,33 @@ import io from "socket.io-client";
 const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 
-export default function SendMyIndex(props) {
+let myindex3 = 24
+
+const sendmyindex = async (props) =>{
+  console.log(`current myindex is...... ${props}`)
+  await socket.emit("send_message" , props.myindex)
+  console.log('ran sendTest')
+}
+
+
+function SendMyIndex(props) {
+
   console.log(props.myindex)
-//   const [count, setCount] = useState(0);
 
-  const sendmyindex = async (props) =>{
-
-    console.log(`current myindex ${props.myindex}`)
-    await socket.emit("send_message" , props.myindex)
-    console.log('ran sendTest')
-  }
+  useEffect(() => {
+    myindex3 = props.myindex
+  },[props.myindex])
 
   useEffect(() => {
     const interval = setInterval(() => {
-    //   setCount(c => c + 1);
-    sendmyindex()
-
-    }, 1000);
+      sendmyindex(myindex3)
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 
-//   return <div>count = {count}</div>;
+  return (
+    <div>SendMyIndex{myindex3}</div>
+  )
 }
+
+export default SendMyIndex
