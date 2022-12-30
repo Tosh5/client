@@ -8,7 +8,7 @@ let myindex3 = 24
 
 const sendmyindex = async (props) =>{
   console.log(`current myindex is...... ${props}`)
-  await socket.emit("send_message" , props.myindex)
+  await socket.emit("send_message" , props)
   console.log('ran sendTest')
 }
 
