@@ -69,6 +69,7 @@ function App() {
     <div className="App">
       <div className="team-index">
         <h1 className='title'>チーム全体の応援</h1>
+        <h1 className='title'>aveIndex: {aveIndex}</h1>
 
         <button 
           className='button' 
