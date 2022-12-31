@@ -84,9 +84,9 @@ function App() {
   }
 
 
-  index.off("receive_message2")
+  socket.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
-  index.on("receive_message2", logoutMsg());
+  socket.on("receive_message2", logoutMsg());
 
   // socket.on("receive_message2", data => {
   //   console.log("来たぜよ！！")
