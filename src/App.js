@@ -44,8 +44,8 @@ function App() {
 
 
 
-  socket.off("aveIndex") // <= この行を追加
-  socket.on('aveIndex', function(data) {
+  // socket.off("aveIndex") // <= この行を追加
+  socket.on("aveIndex", function(data) {
     console.log('received_aveIndex')
     console.log(data)
     setAveIndex(data)
@@ -72,7 +72,7 @@ function App() {
     <div className="App">
       <div className="team-index">
         <h1 className='title'>チーム全体の応援</h1>
-        <h1 className='title'>aveIndex: {grossIndex}</h1>
+        <h1 className='title'>aveIndex: {aveIndex}</h1>
 
         <button 
           className='button' 
