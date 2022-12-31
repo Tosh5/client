@@ -104,7 +104,7 @@ function App() {
         <h3>下のメッセージがoriginalmsgからtestmsgに書き変わる</h3>
         <h2>{msg}</h2>
 
-        <SendMyIndex myindex={index}/> 
+        {/* <SendMyIndex myindex={index}/>  */}
 
         {/* <CreateRand /> */}
 
