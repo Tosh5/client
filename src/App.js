@@ -77,12 +77,12 @@ function App() {
         <h1 className='title'>チーム全体の応援</h1>
         <h1 className='title'>aveIndex: {grossIndex}</h1>
 
-        <button 
+        {/* <button 
           className='button' 
           onClick={sendTest}
         >サーバに送信</button>
         <h3>下のメッセージがoriginalmsgからtestmsgに書き変わる</h3>
-        <h2>{msg}</h2>
+        <h2>{msg}</h2> */}
 
         <SendMyIndex myindex={index}/> 
 
