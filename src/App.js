@@ -58,8 +58,8 @@ function App() {
 
   // ボタン→メッセージのやり取り部分
   socket.off("receive_message") // <= この行を追加
-  socket.on('receive_message', function(data) {
-    setMsg(data)
+  socket.on('receive_message', function(aveIndex) {
+    setMsg(aveIndex)
     console.log('setMsg done')
   })
 
