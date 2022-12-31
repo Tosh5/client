@@ -67,7 +67,7 @@ function App() {
 
   const [msg, setMsg] = useState('original msg')
 
-  // 試しに、ボタン→メッセージのやり取り部分を消してみる
+  // ボタン→メッセージのやり取り部分
   socket.off("receive_message") // <= この行を追加
   socket.on('receive_message', function(data) {
     setMsg(data)
