@@ -52,6 +52,13 @@ function App() {
     // console.log('setAveIndex done')
   })
 
+
+  socket.off("ave_index") // <= この行を追加
+  socket.on('ave_index', function(data) {
+    setAveIndex(data)
+    console.log('ave_index received')
+  })
+
   const sendTest = async () =>{
     console.log('running sendTest')
     await socket.emit("send_message" , "testmsg")
