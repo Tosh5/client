@@ -16,6 +16,9 @@ const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 
 
+let grossIndex = 0
+
+
 
 
 
@@ -25,7 +28,7 @@ function App() {
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
-  const [aveIndex, setAveIndex] = useState()
+  const [aveIndex, useAveIndex] = useState()
 
   socket.on("num_participants", (data) => {
     setNumParticipants(data)
@@ -33,7 +36,8 @@ function App() {
   })
 
   socket.on("aveIndex", (data) => {
-    setAveIndex(data)
+    grossIndex = data
+    // useAveIndex(data)
     // console.log(data)
   })
 
