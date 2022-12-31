@@ -54,7 +54,7 @@ function App() {
 
 
 
-  socket.on("ave_index", function(data){console.log('来たよ！')});
+  socket.on("receive_message2", function(data){console.log('来たよ！')});
 
  
 
