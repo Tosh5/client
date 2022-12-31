@@ -85,8 +85,10 @@ function App() {
 
 
   socket.off("receive_message2")
-  // socket.on("receive_message2", console.log('来たよ！'));
-  socket.on("receive_message2", logoutMsg(aveIndex));
+  // socket.on("receive_message2", logoutMsg(aveIndex));
+  socket.on("receive_message2", function(aveIndex){
+    console.log(`this is aveIndex ${aveIndex}`)
+  });
 
   // index.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
