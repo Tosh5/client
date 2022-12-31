@@ -77,14 +77,14 @@ function App() {
   //   console.log('setAveIndex done')
   // })
 
-  const logoutMsg = (data) =>{
+  const logoutMsg = (msg) =>{
     console.log('来たぜ！！')
-    console.log(data)
+    console.log(msg)
   }
 
 
   socket.off("receive_message2")
-  socket.on("receive_message2", logoutMsg(data));
+  socket.on("receive_message2", logoutMsg(msg));
 
 
 
