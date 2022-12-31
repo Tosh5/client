@@ -46,10 +46,12 @@ function App() {
 
 
   index2.off("receive_message2")
-  index2.on("receive_message2", function(aveIndex){
-    console.log('来たぜよ！！')
-    console.log(`this is aveIndex ${aveIndex}`)
-  });
+  index2.on("receive_message2", console.log('来たぜ！！'));
+
+  // index2.on("receive_message2", function(aveIndex){
+  //   console.log('来たぜよ！！')
+  //   console.log(`this is aveIndex ${aveIndex}`)
+  // });
 
 
 
