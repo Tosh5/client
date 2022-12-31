@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 
 import io from "socket.io-client";
 // const socket = io.connect("https://43.207.73.189:8000")
-const socket = io.connect("http://localhost:8000")
+// const socket = io.connect("http://localhost:8000")
 // const socket = io.connect("https://hdpcvd23qq.ap-northeast-1.awsapprunner.com:8000")
 // const socket = io.connect("https://13.228.225.19:8000")
 // const socket = io.connect("https://cheer-app-server1.onrender.com:10000")
 // const socket = io.connect("http://cheer-app-server2:10000")
-// const socket = io.connect("https://cheer-app-server1.onrender.com")
+const socket = io.connect("https://cheer-app-server1.onrender.com")
 // ↑ 他のコンポーネントでも、同様の記載あり。接続先変更時は合わせて変更せよ
 
 function StartSupport(props) {
