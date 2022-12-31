@@ -78,15 +78,15 @@ function App() {
   //   console.log('setAveIndex done')
   // })
 
-  const logoutMsg = () =>{
+  const logoutMsg = (aveIndex) =>{
     console.log('来たぜ！！')
-    // console.log(`msg is : ${msg1}`)
+    console.log(`msg is : ${aveIndex}`)
   }
 
 
   socket.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
-  socket.on("receive_message2", logoutMsg());
+  socket.on("receive_message2", logoutMsg(aveIndex));
 
   // index.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
