@@ -14,7 +14,7 @@ import io from "socket.io-client";
 
 const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
-const index = io.connect("https://cheer-app-server1.onrender.com/index")
+// const index = io.connect("https://cheer-app-server1.onrender.com/index")
 
 
 let grossIndex = 0
@@ -84,9 +84,13 @@ function App() {
   }
 
 
-  index.off("receive_message2")
+  socket.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
-  index.on("receive_message2", logoutMsg());
+  socket.on("receive_message2", logoutMsg());
+
+  // index.off("receive_message2")
+  // socket.on("receive_message2", console.log('来たよ！'));
+  // index.on("receive_message2", logoutMsg());
 
   // socket.on("receive_message2", data => {
   //   console.log("来たぜよ！！")
