@@ -39,14 +39,17 @@ function App() {
     console.log('setMsg done')
   })
 
-  // const logoutMsg = (aveIndex) =>{
-  //   console.log('来たぜ！！')
-  //   console.log(`msg is : ${aveIndex}`)
-  // }
+  const logoutMsg = (aveIndex) =>{
+    console.log('来たぜ！！')
+    console.log(`msg is : ${aveIndex}`)
+  }
 
 
   index2.off("receive_message2")
-  index2.on("receive_message2", console.log('来たぜ！！'));
+  // index2.on("receive_message2", console.log('来たぜ！！'));  //動く！
+  index2.on("receive_message2", function(myIndex){
+    console.log(`これが！！${myIndex}`);
+  });
 
   // index2.on("receive_message2", function(aveIndex){
   //   console.log('来たぜよ！！')
