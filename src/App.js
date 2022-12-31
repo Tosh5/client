@@ -23,7 +23,7 @@ let grossIndex = 0
 
 
 function App() {
-  // console.log('function App()が呼ばれたよ')
+  console.log('function App()が呼ばれたよ')
   
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
@@ -35,27 +35,7 @@ function App() {
   //   // console.log(data)
   // })
 
-  // socket.off("aveIndex") // <= この行を追加
-  // socket.on("aveIndex", (data) => {
-  //   // grossIndex = data
-  //   // useAveIndex(data)
-  //   console.log(`aveIndex is ${data}`)
-  // })
-
-
-
-  // socket.off("aveIndex") // <= この行を追加
-  // socket.on("aveIndex", function(data) {
-  //   console.log('received_aveIndex')
-  //   // console.log(data)
-  //   // setAveIndex(data)
-  //   // console.log('setAveIndex done')
-  // })
-
-
-  socket.off("receive_message2")
-  socket.on("receive_message2", function(){console.log('来たよ！')});
-  // socket.on("receive_message2", function(data){console.log('来たよ！')});
+  
 
  
 
@@ -81,6 +61,26 @@ function App() {
     setMsg(data)
     console.log('setMsg done')
   })
+
+  // socket.off("aveIndex") // <= この行を追加
+  // socket.on("aveIndex", (data) => {
+  //   // grossIndex = data
+  //   // useAveIndex(data)
+  //   console.log(`aveIndex is ${data}`)
+  // })
+
+  // socket.off("aveIndex") // <= この行を追加
+  // socket.on("aveIndex", function(data) {
+  //   console.log('received_aveIndex')
+  //   // console.log(data)
+  //   // setAveIndex(data)
+  //   // console.log('setAveIndex done')
+  // })
+
+
+  socket.off("receive_message2")
+  socket.on("receive_message2", console.log('来たよ！'));
+  // socket.on("receive_message2", function(data){console.log('来たよ！')});
 
   return (
     <div className="App">
