@@ -45,7 +45,7 @@ function App() {
   // }
 
 
-  index.off("receive_message2")
+  // index.off("receive_message2")
   index.on("receive_message2", function(aveIndex){
     console.log('来たぜよ！！')
     console.log(`this is aveIndex ${aveIndex}`)
