@@ -44,12 +44,12 @@ function App() {
 
 
 
-  // socket.off("aveIndex") // <= この行を追加
+  socket.off("aveIndex") // <= この行を追加
   socket.on("aveIndex", function(data) {
     console.log('received_aveIndex')
-    console.log(data)
-    setAveIndex(data)
-    console.log('setAveIndex done')
+    // console.log(data)
+    // setAveIndex(data)
+    // console.log('setAveIndex done')
   })
 
   const sendTest = async () =>{
@@ -63,7 +63,6 @@ function App() {
   // 試しに、ボタン→メッセージのやり取り部分を消してみる
   socket.off("receive_message") // <= この行を追加
   socket.on('receive_message', function(data) {
-
     setMsg(data)
     console.log('setMsg done')
   })
