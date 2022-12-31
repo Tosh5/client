@@ -27,7 +27,7 @@ function App() {
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
-  const [aveIndex, setAveIndex] = useState()
+  // const [aveIndex, setAveIndex] = useState()
 
   const sendTest = async () =>{
     console.log('running sendTest')
@@ -48,17 +48,17 @@ function App() {
 
 
   index2.off("receive_message2")
-  index2.on("receive_message2", console.log('来たぜ！！'));  //動く！
+  // index2.on("receive_message2", console.log('来たぜ！！'));  //動く！
   // index2.on("receive_message2", logoutMsg(aveIndex)
   //   // function(myIndex){
   //   //   console.log(`これが！！${myIndex}`);
   //   // }
   // );
 
-  // index2.on("receive_message2", function(aveIndex) {
-  //   console.log('来たぜよ！！')
-  //   // console.log(`this is aveIndex ${aveIndex}`)
-  // });
+  index2.on("receive_message2", function(aveIndex) {
+    console.log('来たぜよ！！')
+    // console.log(`this is aveIndex ${aveIndex}`)
+  });
 
 
 
@@ -66,7 +66,7 @@ function App() {
     <div className="App">
       <div className="team-index">
         <h1 className='title'>チーム全体の応援</h1>
-        <h1 className='title'>aveIndex: {aveIndex}</h1>
+        {/* <h1 className='title'>aveIndex: {aveIndex}</h1> */}
 
         <button 
           className='button' 
