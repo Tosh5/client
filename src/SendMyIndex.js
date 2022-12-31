@@ -24,7 +24,7 @@ function SendMyIndex(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       sendmyindex(myindex3)
-    }, 100);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
