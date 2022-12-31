@@ -79,7 +79,7 @@ function App() {
 
   const logoutMsg = (msg) =>{
     console.log('来たぜ！！')
-    console.log(msg)
+    console.log(`msg is : ${msg}`)
   }
 
 
