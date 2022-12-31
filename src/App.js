@@ -77,10 +77,19 @@ function App() {
   //   console.log('setAveIndex done')
   // })
 
+  const logoutMsg = () =>{
+    console.log('来たぜ！！')
+  }
+
 
   socket.off("receive_message2")
+  socket.on("receive_message2", logoutMsg);
   // socket.on("receive_message2", console.log('来たよ！'));
-  socket.on("receive_message2", function(data){console.log('来たよ！')});
+
+  // socket.on("receive_message2", function(data){
+  //   console.log('来たよ！')
+  //   console.log(data)
+  // });
 
   return (
     <div className="App">
