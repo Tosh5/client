@@ -29,7 +29,7 @@ function SendMyIndex(props) {
   }, []);
 
   return (
-    <div>SendMyIndex{myindex3}</div>
+    <div>MyIndex is : {myindex3}</div>
   )
 }
 

@@ -8,7 +8,7 @@ import Monitor from './Monitor';
 import StartSupport from './StartSupport';
 import SendMyIndex from './SendMyIndex';
 
-import CreateRand from './CreateRand';
+// import CreateRand from './CreateRand';
 
 import io from "socket.io-client";
 
@@ -28,48 +28,68 @@ function App() {
   const [index, useIndex] = useState(0)
   const [info, useInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
-  const [aveIndex, useAveIndex] = useState()
+  const [aveIndex, setAveIndex] = useState()
 
   // socket.on("num_participants", (data) => {
   //   setNumParticipants(data)
   //   // console.log(data)
   // })
 
+  // socket.off("aveIndex") // <= この行を追加
+  // socket.on("aveIndex", (data) => {
+  //   // grossIndex = data
+  //   // useAveIndex(data)
+  //   console.log(`aveIndex is ${data}`)
+  // })
+
+
+
   socket.off("aveIndex") // <= この行を追加
-  socket.on("aveIndex", (data) => {
-    // grossIndex = data
-    // useAveIndex(data)
-    console.log(`aveIndex is ${data}`)
+  socket.on('aveIndex', function(data) {
+    async.waterfall([
+      function(callback) {
+        console.log('received_aveIndex')
+      }, 
+      function(callback) {
+        console.log(data)
+      }, 
+      function(callback) {
+        setAveIndex(data)
+      }, 
+      function(callback) {
+        console.log('setAveIndex done')
+      }, 
+    ], function(err,result) {
+    });
   })
 
-  // const sendTest = async () =>{
-  //   console.log('running sendTest')
-  //   await socket.emit("send_message" , "testmsg")
-  //   // socket.emit("send_message" , {myIndex : 'index'})
-  //   console.log('ran sendTest')
-  // }
+  const sendTest = async () =>{
+    console.log('running sendTest')
+    await socket.emit("send_message" , "testmsg")
+    console.log('ran sendTest')
+  }
 
   const [msg, setMsg] = useState('original msg')
 
   // 試しに、ボタン→メッセージのやり取り部分を消してみる
-  // socket.off("receive_message") // <= この行を追加
-  // socket.on('receive_message', function(data) {
-  //   async.waterfall([
-  //     function(callback) {
-  //       console.log('received_message')
-  //     }, 
-  //     function(callback) {
-  //       console.log(data)
-  //     }, 
-  //     function(callback) {
-  //       setMsg(data)
-  //     }, 
-  //     function(callback) {
-  //       console.log('setMsg done')
-  //     }, 
-  //   ], function(err,result) {
-  //   });
-  // })
+  socket.off("receive_message") // <= この行を追加
+  socket.on('receive_message', function(data) {
+    async.waterfall([
+      function(callback) {
+        console.log('received_message')
+      }, 
+      function(callback) {
+        console.log(data)
+      }, 
+      function(callback) {
+        setMsg(data)
+      }, 
+      function(callback) {
+        console.log('setMsg done')
+      }, 
+    ], function(err,result) {
+    });
+  })
 
   return (
     <div className="App">
@@ -77,16 +97,16 @@ function App() {
         <h1 className='title'>チーム全体の応援</h1>
         <h1 className='title'>aveIndex: {grossIndex}</h1>
 
-        {/* <button 
+        <button 
           className='button' 
           onClick={sendTest}
         >サーバに送信</button>
         <h3>下のメッセージがoriginalmsgからtestmsgに書き変わる</h3>
-        <h2>{msg}</h2> */}
+        <h2>{msg}</h2>
 
         <SendMyIndex myindex={index}/> 
 
-        <CreateRand />
+        {/* <CreateRand /> */}
 
         <Gauge score={index} />
         <StartSupport 
