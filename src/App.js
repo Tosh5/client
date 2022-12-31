@@ -72,8 +72,8 @@ function App() {
   socket.off("receive_message2") // <= この行を追加
   socket.on("receive_message2", function(data) {
     console.log('received_aveIndex')
-    console.log(data)
-    setAveIndex(data)
+    // console.log(data)
+    // setAveIndex(data)
     console.log('setAveIndex done')
   })
 
