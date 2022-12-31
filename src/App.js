@@ -69,17 +69,17 @@ function App() {
   //   console.log(`aveIndex is ${data}`)
   // })
 
-  socket.off("receive_message2") // <= この行を追加
-  socket.on("receive_message2", function(data) {
-    console.log('received_aveIndex')
-    // console.log(data)
-    // setAveIndex(data)
-    console.log('setAveIndex done')
-  })
+  // socket.off("receive_message2") // <= この行を追加
+  // socket.on("receive_message2", function(data) {
+  //   console.log('received_aveIndex')
+  //   // console.log(data)
+  //   // setAveIndex(data)
+  //   console.log('setAveIndex done')
+  // })
 
 
-  // socket.off("receive_message2")
-  // socket.on("receive_message2", console.log('来たよ！'));
+  socket.off("receive_message2")
+  socket.on("receive_message2", console.log('来たよ！'));
   // socket.on("receive_message2", function(data){console.log('来たよ！')});
 
   return (
