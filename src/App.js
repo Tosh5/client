@@ -38,7 +38,7 @@ function App() {
   socket.on("aveIndex", (data) => {
     grossIndex = data
     // useAveIndex(data)
-    // console.log(data)
+    console.log(`aveIndex is ${data}`)
   })
 
   const sendTest = async () =>{
@@ -73,7 +73,7 @@ function App() {
     <div className="App">
       <div className="team-index">
         <h1 className='title'>チーム全体の応援</h1>
-        <h1 className='title'>aveIndex: {aveIndex}</h1>
+        <h1 className='title'>aveIndex: {grossIndex}</h1>
 
         <button 
           className='button' 
