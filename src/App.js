@@ -14,7 +14,7 @@ import io from "socket.io-client";
 
 const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
-const index2 = io.connect("https://cheer-app-server1.onrender.com/index")
+const index2 = io("https://cheer-app-server1.onrender.com/index")
 
 function logoutMsg(aveIndex){
   console.log('来たぜ！！')
@@ -55,7 +55,7 @@ function App() {
   //   // }
   // );
 
-  index2.on("receive_message2", function(aveIndex){
+  index2.on("receive_message2", function(aveIndex) {
     console.log('来たぜよ！！')
     // console.log(`this is aveIndex ${aveIndex}`)
   });
