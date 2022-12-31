@@ -53,11 +53,18 @@ function App() {
   // })
 
 
-  socket.off("ave_index") // <= この行を追加
-  socket.on('ave_index', function(data) {
-    setAveIndex(data)
-    console.log('ave_index received')
-  })
+
+  socket.on("ave_index", function(data){console.log('来たよ！')});
+
+ 
+
+
+  // 試しに消してみる
+  // socket.off("ave_index") // <= この行を追加
+  // socket.on('ave_index', function(data) {
+  //   setAveIndex(data)
+  //   console.log('ave_index received')
+  // })
 
   const sendTest = async () =>{
     console.log('running sendTest')
