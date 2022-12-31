@@ -34,9 +34,10 @@ function App() {
     setNumParticipants(data)
     // console.log(data)
   })
+
   socket.off("aveIndex") // <= この行を追加
   socket.on("aveIndex", (data) => {
-    grossIndex = data
+    // grossIndex = data
     // useAveIndex(data)
     console.log(`aveIndex is ${data}`)
   })
