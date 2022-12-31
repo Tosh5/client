@@ -16,6 +16,11 @@ const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 const index2 = io.connect("https://cheer-app-server1.onrender.com/index")
 
+function logoutMsg(aveIndex){
+  console.log('来たぜ！！')
+  console.log(`msg is : ${aveIndex}`)
+}
+
 function App() {
   console.log('function App()が呼ばれたよ')
   
@@ -39,10 +44,7 @@ function App() {
     console.log('setMsg done')
   })
 
-  const logoutMsg = (aveIndex) =>{
-    console.log('来たぜ！！')
-    console.log(`msg is : ${aveIndex}`)
-  }
+  
 
 
   index2.off("receive_message2")
