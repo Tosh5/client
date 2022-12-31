@@ -44,13 +44,13 @@ function App() {
 
 
 
-  socket.off("aveIndex") // <= この行を追加
-  socket.on("aveIndex", function(data) {
-    console.log('received_aveIndex')
-    // console.log(data)
-    // setAveIndex(data)
-    // console.log('setAveIndex done')
-  })
+  // socket.off("aveIndex") // <= この行を追加
+  // socket.on("aveIndex", function(data) {
+  //   console.log('received_aveIndex')
+  //   // console.log(data)
+  //   // setAveIndex(data)
+  //   // console.log('setAveIndex done')
+  // })
 
 
   socket.off("ave_index") // <= この行を追加
