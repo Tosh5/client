@@ -83,7 +83,7 @@ function App() {
 
 
   socket.off("receive_message2")
-  socket.on("receive_message2", logoutMsg);
+  socket.on("receive_message2", logoutMsg());
   // socket.on("receive_message2", console.log('来たよ！'));
 
   // socket.on("receive_message2", function(data){
