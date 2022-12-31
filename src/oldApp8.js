@@ -16,6 +16,9 @@ const async = require("async");
 const socket = io.connect("https://cheer-app-server1.onrender.com")
 const index = io.connect("https://cheer-app-server1.onrender.com/index")
 
+let grossIndex = 0
+
+
 function App() {
   console.log('function App()が呼ばれたよ')
   
@@ -23,6 +26,23 @@ function App() {
   const [info, useInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
   const [aveIndex, setAveIndex] = useState()
+
+  // socket.on("num_participants", (data) => {
+  //   setNumParticipants(data)
+  //   // console.log(data)
+  // })
+
+  
+
+ 
+
+
+  // 試しに消してみる
+  // socket.off("ave_index") // <= この行を追加
+  // socket.on('ave_index', function(data) {
+  //   setAveIndex(data)
+  //   console.log('ave_index received')
+  // })
 
   const sendTest = async () =>{
     console.log('running sendTest')
@@ -39,19 +59,53 @@ function App() {
     console.log('setMsg done')
   })
 
-  // const logoutMsg = (aveIndex) =>{
-  //   console.log('来たぜ！！')
-  //   console.log(`msg is : ${aveIndex}`)
-  // }
+  // socket.off("aveIndex") // <= この行を追加
+  // socket.on("aveIndex", (data) => {
+  //   // grossIndex = data
+  //   // useAveIndex(data)
+  //   console.log(`aveIndex is ${data}`)
+  // })
+
+  // socket.off("receive_message2") // <= この行を追加
+  // socket.on("receive_message2", function(data) {
+  //   console.log('received_aveIndex')
+  //   // console.log(data)
+  //   // setAveIndex(data)
+  //   console.log('setAveIndex done')
+  // })
+
+  const logoutMsg = (aveIndex) =>{
+    console.log('来たぜ！！')
+    console.log(`msg is : ${aveIndex}`)
+  }
 
 
-  index.off("receive_message2")
-  index.on("receive_message2", function(aveIndex){
+  socket.off("receive_message2")
+  // socket.on("receive_message2", logoutMsg(aveIndex));
+  socket.on("receive_message2", function(aveIndex){
     console.log('来たぜよ！！')
     console.log(`this is aveIndex ${aveIndex}`)
   });
 
+  // index.off("receive_message2")
+  // socket.on("receive_message2", console.log('来たよ！'));
+  // index.on("receive_message2", logoutMsg());
 
+  // socket.on("receive_message2", data => {
+  //   console.log("来たぜよ！！")
+  //   console.log(`msg is : ${data}`)
+  // });
+
+
+
+
+
+  // socket.on("receive_message2", console.log('来たよ！'));
+
+  // socket.on("receive_message2", function(data){
+  //   console.log('来たよ！')
+  //   console.log(data)
+  // });
 
   return (
     <div className="App">

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 const async = require("async");
-const socket = io.connect("https://cheer-app-server1.onrender.com")
+// const socket = io.connect("https://cheer-app-server1.onrender.com")
+const index = io.connect("https://cheer-app-server1.onrender.com/index")
 
 let myindex3 = 24
 
 const sendmyindex = async (props) =>{
   console.log(`current myindex is...... ${props}`)
-  await socket.emit("send_myindex" , props)
+  await index.emit("send_myindex" , props)
   console.log('ran sendTest')
 }
 
