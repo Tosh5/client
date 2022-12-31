@@ -30,10 +30,10 @@ function App() {
   const [num_participants, setNumParticipants] = useState()
   const [aveIndex, useAveIndex] = useState()
 
-  socket.on("num_participants", (data) => {
-    setNumParticipants(data)
-    // console.log(data)
-  })
+  // socket.on("num_participants", (data) => {
+  //   setNumParticipants(data)
+  //   // console.log(data)
+  // })
 
   socket.off("aveIndex") // <= この行を追加
   socket.on("aveIndex", (data) => {
@@ -42,33 +42,34 @@ function App() {
     console.log(`aveIndex is ${data}`)
   })
 
-  const sendTest = async () =>{
-    console.log('running sendTest')
-    await socket.emit("send_message" , "testmsg")
-    // socket.emit("send_message" , {myIndex : 'index'})
-    console.log('ran sendTest')
-  }
+  // const sendTest = async () =>{
+  //   console.log('running sendTest')
+  //   await socket.emit("send_message" , "testmsg")
+  //   // socket.emit("send_message" , {myIndex : 'index'})
+  //   console.log('ran sendTest')
+  // }
 
   const [msg, setMsg] = useState('original msg')
 
-  socket.off("receive_message") // <= この行を追加
-  socket.on('receive_message', function(data) {
-    async.waterfall([
-      function(callback) {
-        console.log('received_message')
-      }, 
-      function(callback) {
-        console.log(data)
-      }, 
-      function(callback) {
-        setMsg(data)
-      }, 
-      function(callback) {
-        console.log('setMsg done')
-      }, 
-    ], function(err,result) {
-    });
-  })
+  // 試しに、ボタン→メッセージのやり取り部分を消してみる
+  // socket.off("receive_message") // <= この行を追加
+  // socket.on('receive_message', function(data) {
+  //   async.waterfall([
+  //     function(callback) {
+  //       console.log('received_message')
+  //     }, 
+  //     function(callback) {
+  //       console.log(data)
+  //     }, 
+  //     function(callback) {
+  //       setMsg(data)
+  //     }, 
+  //     function(callback) {
+  //       console.log('setMsg done')
+  //     }, 
+  //   ], function(err,result) {
+  //   });
+  // })
 
   return (
     <div className="App">
