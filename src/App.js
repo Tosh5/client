@@ -77,20 +77,20 @@ function App() {
   //   console.log('setAveIndex done')
   // })
 
-  // const logoutMsg = (msg1) =>{
-  //   console.log('来たぜ！！')
-  //   console.log(`msg is : ${msg1}`)
-  // }
+  const logoutMsg = () =>{
+    console.log('来たぜ！！')
+    // console.log(`msg is : ${msg1}`)
+  }
 
 
   socket.off("receive_message2")
   // socket.on("receive_message2", console.log('来たよ！'));
-  // socket.on("receive_message2", logoutMsg(msg1));
+  socket.on("receive_message2", logoutMsg());
 
-  socket.on("receive_message2", data => {
-    console.log("来たぜよ！！")
-    console.log(`msg is : ${data}`)
-  });
+  // socket.on("receive_message2", data => {
+  //   console.log("来たぜよ！！")
+  //   console.log(`msg is : ${data}`)
+  // });
 
 
 
