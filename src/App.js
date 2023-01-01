@@ -11,10 +11,13 @@ import SendMyIndex from './SendMyIndex';
 // import CreateRand from './CreateRand';
 
 import io from "socket.io-client";
+import AudioRecong from './AudioRecong';
 
 const async = require("async");
-const socket = io.connect("https://cheer-app-server1.onrender.com")
-const index2 = io("https://cheer-app-server1.onrender.com/index")
+const socket = io.connect("http://localhost:8000")
+// const socket = io.connect("https://cheer-app-server1.onrender.com")
+
+// const index2 = io("https://cheer-app-server1.onrender.com/index")
 
 function logoutMsg(aveIndex){
   console.log('来たぜ！！')
@@ -47,7 +50,8 @@ function App() {
   
 
 
-  index2.off("receive_message2")
+  // index2.off("receive_message2")
+  socket.off("receive_message2")
   // index2.on("receive_message2", console.log('来たぜ！！'));  //動く！
   // index2.on("receive_message2", logoutMsg(aveIndex)
   //   // function(myIndex){
@@ -55,7 +59,8 @@ function App() {
   //   // }
   // );
 
-  index2.on("receive_message2", function(aveIndex) {
+  // index2.on("receive_message2", function(aveIndex) {
+  socket.on("receive_message2", function(aveIndex) {
     console.log('来たぜよ！！')
     // console.log(`this is aveIndex ${aveIndex}`)
   });
@@ -104,6 +109,7 @@ function App() {
               <MiniGauge score={index} />
             </div>
         </div>
+        <AudioRecong />
       </div>
     </div>
   );
