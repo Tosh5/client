@@ -8,7 +8,9 @@ import io from "socket.io-client";
 // const socket = io.connect("https://13.228.225.19:8000")
 // const socket = io.connect("https://cheer-app-server1.onrender.com:10000")
 // const socket = io.connect("http://cheer-app-server2:10000")
-const socket = io.connect("https://cheer-app-server1.onrender.com")
+// const socket = io.connect("https://cheer-app-server1.onrender.com")
+
+const socket = io.connect(process.env.REACT_APP_SOCKET_URL);
 // ↑ 他のコンポーネントでも、同様の記載あり。接続先変更時は合わせて変更せよ
 
 function StartSupport(props) {

@@ -2,19 +2,27 @@ import * as React from 'react';
 import './App.css';
 import Gauge from './Gauge';
 import MiniGauge from './MiniGauge';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Monitor from './Monitor';
 // import { Info } from './Info';
 import StartSupport from './StartSupport';
 import SendMyIndex from './SendMyIndex';
 
+
 // import CreateRand from './CreateRand';
 
 import io from "socket.io-client";
 import AudioRecong from './AudioRecong';
+import SocketTest from './SocketTest';
+import AppContainer from './AppContainer';
+
+// require('dotenv').config()
 
 const async = require("async");
-const socket = io.connect("http://localhost:8000")
+const socket = io.connect(process.env.REACT_APP_SOCKET_URL)
+
+
+// const socket = io.connect("http://localhost:8000")
 // const socket = io.connect("https://cheer-app-server1.onrender.com")
 
 // const index2 = io("https://cheer-app-server1.onrender.com/index")
@@ -24,53 +32,123 @@ function logoutMsg(aveIndex){
   console.log(`msg is : ${aveIndex}`)
 }
 
+// 関数名は小文字スタートcamelCaseで書く。コンポーネントはわかりやすく大文字スタートPascalCaseにしている。
+export function add(a, b) {
+  return a + b;
+}
+
+// testmsgを送信するボタンのonClick関数
+const sendTest = async () =>{
+  console.log('running sendTest')
+  await socket.emit("send_message" , "testmsg")
+  console.log('ran sendTest')
+}
+
+
+
+
+
 function App() {
   console.log('function App()が呼ばれたよ')
+
+  // indexをサーバに送りつける関数
+  const sendmyindex = async () =>{
+  // console.log(`current myindex is...... ${props}`)
+  // await socket.emit("send_myindex" , props)
+  console.log("サーバにindexを送信する!")
+  await socket.emit("send_myindex" , index)
+  console.log('サーバにindexを送信したぜ!')
+}
+
+
+  // console.log(add(1,2))
+
+  // 以下の20行くらいは、socket.ioの公式ドキュメントからのコピペ
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [lastPong, setLastPong] = useState(null);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      setIsConnected(true);
+    });
+
+    socket.on('disconnect', () => {
+      setIsConnected(false);
+    });
+
+    socket.on('pong', () => {
+      setLastPong(new Date().toISOString());
+    });
+
+    socket.on('receive_message', function(aveIndex) {
+      setMsg(aveIndex)
+      console.log('setMsg done')
+    })
+
+    socket.on('receive_message2', function(aveIndex) {
+      setAveIndex(aveIndex)
+      console.log('来たぜよ！！！！！')
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('pong');
+    };
+  }, []);
+
+
+
+  
   
   const [index, useIndex] = useState(0)
-  const [info, useInfo] = useState('応援してください')
+  const [info, setInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
   // const [aveIndex, setAveIndex] = useState()
+  const [aveIndex, setAveIndex] = useState()
 
-  const sendTest = async () =>{
-    console.log('running sendTest')
-    await socket.emit("send_message" , "testmsg")
-    console.log('ran sendTest')
-  }
+  
 
   const [msg, setMsg] = useState('original msg')
 
-  // ボタン→メッセージのやり取り部分
-  socket.off("receive_message") // <= この行を追加
-  socket.on('receive_message', function(aveIndex) {
-    setMsg(aveIndex)
-    console.log('setMsg done')
-  })
+  // // ボタン→メッセージのやり取り部分
+  // socket.off("receive_message") // <= この行を追加
+  // socket.on('receive_message', function(aveIndex) {
+  //   setMsg(aveIndex)
+  //   console.log('setMsg done')
+  // })
 
-  
+  // // aveIndexの受信
+  // socket.off("receive_message2")
+  // socket.on("receive_message2", function(aveIndex) {
+  //   console.log('来たぜよ！！')
+  // });
 
+  let myindex3 = 24
 
-  // index2.off("receive_message2")
-  socket.off("receive_message2")
-  // index2.on("receive_message2", console.log('来たぜ！！'));  //動く！
-  // index2.on("receive_message2", logoutMsg(aveIndex)
-  //   // function(myIndex){
-  //   //   console.log(`これが！！${myIndex}`);
-  //   // }
-  // );
+  // useEffect(() => {
+  //   // myindex3 = props.myindex
+  // },[index])
 
-  // index2.on("receive_message2", function(aveIndex) {
-  socket.on("receive_message2", function(aveIndex) {
-    console.log('来たぜよ！！')
-    // console.log(`this is aveIndex ${aveIndex}`)
-  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      sendmyindex(index)
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
 
 
 
   return (
     <div className="App">
+      {/* <AppContainer 
+        msg = {msg} 
+        /> */}
+
       <div className="team-index">
+        {/* <SocketTest /> */}
         <h1 className='title'>チーム全体の応援</h1>
+        <h3>{aveIndex}</h3>
         {/* <h1 className='title'>aveIndex: {aveIndex}</h1> */}
 
         <button 
@@ -81,8 +159,6 @@ function App() {
         <h2>{msg}</h2>
 
         <SendMyIndex myindex={index}/> 
-
-        {/* <CreateRand /> */}
 
         <Gauge score={index} />
         <StartSupport 
@@ -95,7 +171,6 @@ function App() {
       <div className='bottom'>
         <h1 className='title'>あなたの応援</h1>
         <div className='monitor'>
-            {/* <h1>メッセージ</h1> */}
             <Monitor useIndex={useIndex} /> 
         </div>  
 
@@ -109,8 +184,9 @@ function App() {
               <MiniGauge score={index} />
             </div>
         </div>
-        <AudioRecong />
       </div>
+
+
     </div>
   );
 }

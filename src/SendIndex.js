@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-import { add } from './App.js'
 import hoge from './App.js'
 import {useSockets} from './context/socket.context';
 
 const async = require("async");
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL) //socketProviderを使わないなら必要
-// const socket = io.connect("http://localhost:8000")
-// const socket = io.connect("https://cheer-app-server1.onrender.com")
-// const index = io.connect("https://cheer-app-server1.onrender.com/index")
 
 let myindex3 = 24
 
@@ -23,7 +19,7 @@ const sendmyindex = async (props) =>{
 }
 
 
-function SendMyIndex(props) {
+function SendIndex(props) {
 
   // const {socket, messages, setMessages} = useSockets();
 
@@ -38,7 +34,7 @@ function SendMyIndex(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       sendmyindex(myindex3)
-    }, 200);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -49,4 +45,4 @@ function SendMyIndex(props) {
   )
 }
 
-export default SendMyIndex
+export default SendIndex

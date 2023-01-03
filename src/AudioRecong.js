@@ -2,7 +2,7 @@ import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const AudioRecong = () => {
-    console.log('AudioRecong running')
+    // console.log('AudioRecong running')
   const {
     transcript,
     listening,
@@ -19,15 +19,16 @@ const AudioRecong = () => {
 //   if (transcript )
 
 SpeechRecognition.startListening({continuous: true, language: "ja"})
+console.log(transcript)
 
   return (
     <div>
         {/* <p>{count}</p> */}
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
+      {/* <p>Microphone: {listening ? 'on' : 'off'}</p> //マイクがオンになっているかがわかる。 */}
       {/* <button className='button' onClick={SpeechRecognition.startListening({continuous: true, language: "ja"})}>Start</button> */}
       {/* <button className='button' onClick={SpeechRecognition.stopListening}>Stop</button>  */}
       {/* <button className='button' onClick={resetTranscript}>Reset</button> */}
-      <p>here: {transcript}</p>
+      {/* <p>here: {transcript}</p> */}
       
     </div>
   );
