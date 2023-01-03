@@ -2,8 +2,6 @@ import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import GaugeProvider from './GaugeProvider';
-import SendIndex from './SendIndex';
-
 
 const Guage = (props) => {
   const { score } = props;
@@ -54,7 +52,6 @@ const Guage = (props) => {
           />
         )}
       </GaugeProvider>
-      <SendIndex />
     </div>
   );
 };

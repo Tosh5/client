@@ -48,7 +48,6 @@ function App() {
   return (
     <div className="App">
       <div className="team-index">
-        {/* <SocketTest /> */}
         <h1 className='title'>チーム全体の応援</h1>
         <h3>チーム全体の応援熱量: {aveIndex}</h3>
         <SendMyIndex myindex={index}/>

@@ -29,7 +29,6 @@ function SocketTest() {
       <input type="text" ref={messageRef} placeholder="write message" />
       <button onClick={handleClick}>Send</button>
       <Messages />
-        
     </>
   );
 }
