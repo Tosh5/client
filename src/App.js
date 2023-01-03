@@ -10,13 +10,6 @@ import SendMyIndex from './SendMyIndex';
 import io from "socket.io-client";
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL)
 
-// testmsgを送信するボタンのonClick関数
-const sendTest = async () =>{
-  console.log('running sendTest')
-  await socket.emit("send_message" , "testmsg")
-  console.log('ran sendTest')
-}
-
 function App() {
   console.log('function App()が呼ばれたよ')
 
@@ -24,7 +17,6 @@ function App() {
   const [info, setInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
   const [aveIndex, setAveIndex] = useState()
-  const [msg, setMsg] = useState('original msg')
 
   // indexをサーバに送りつける関数
   const sendmyindex = async () =>{
@@ -35,22 +27,15 @@ function App() {
 
   // 以下の15行くらいは、socket.ioの公式ドキュメントからのコピペ
   useEffect(() => {
-    socket.on('receive_message', function(aveIndex) {
-      setMsg(aveIndex)
-      console.log('setMsg done')
-    })
-
     socket.on('receive_message2', function(aveIndex) {
       setAveIndex(aveIndex)
       console.log('来たぜよ！！！！！')
     });
 
     return () => {
-      socket.off('receive_message');
       socket.off('receive_message2');
     };
   }, []);
-  
   
 
   useEffect(() => {
@@ -65,16 +50,8 @@ function App() {
       <div className="team-index">
         {/* <SocketTest /> */}
         <h1 className='title'>チーム全体の応援</h1>
-        <h3>{aveIndex}</h3>
-
-        <button 
-          className='button' 
-          onClick={sendTest}
-        >サーバに送信</button>
-        <h3>下のメッセージがoriginalmsgからtestmsgに書き変わる</h3>
-        <h2>{msg}</h2>
-
-        <SendMyIndex myindex={index}/> 
+        <h3>チーム全体の応援熱量: {aveIndex}</h3>
+        <SendMyIndex myindex={index}/>
 
         <Gauge score={index} />
         <StartSupport 
