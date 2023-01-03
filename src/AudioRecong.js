@@ -1,8 +1,10 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+// import {useGanbareUpdater} from './VoiceContext'
+import { GanbareCount } from './VoiceContext';
+
 
 const AudioRecong = () => {
-    // console.log('AudioRecong running')
   const {
     transcript,
     listening,
@@ -10,26 +12,30 @@ const AudioRecong = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  // const { ganbareCount, setGanbareCount} = useContext(UserCount);
+  const { ganbareCount, setGanbareCount } = useContext(GanbareCount)
+
+  var count1 = ( transcript.match( /頑張れ/g ) || [] ).length ;
+  var count2 = ( transcript.match( /がんばれ/g ) || [] ).length ;
+  var count3 = ( transcript.match( /ガンバレ/g ) || [] ).length ;
+  var counts = count1+count2+count3
+
+  // const ganbareUpdate = useGanbareUpdater()
+  // ganbareUpdate(counts)
+  setGanbareCount(counts)
+
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
-
-//   var count = ( transcript.match( /頑張れ/g ) || [] ).length ;
-
-//   if (transcript )
+  // else{
+  //   return
+  // }
 
 SpeechRecognition.startListening({continuous: true, language: "ja"})
 console.log(transcript)
 
   return (
-    <div>
-        {/* <p>{count}</p> */}
-      {/* <p>Microphone: {listening ? 'on' : 'off'}</p> //マイクがオンになっているかがわかる。 */}
-      {/* <button className='button' onClick={SpeechRecognition.startListening({continuous: true, language: "ja"})}>Start</button> */}
-      {/* <button className='button' onClick={SpeechRecognition.stopListening}>Stop</button>  */}
-      {/* <button className='button' onClick={resetTranscript}>Reset</button> */}
-      {/* <p>here: {transcript}</p> */}
-      
+    <div>      
     </div>
   );
 };
