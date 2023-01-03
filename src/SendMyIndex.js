@@ -44,8 +44,7 @@ function SendMyIndex(props) {
 
   return (
     <div>
-      {/* MyIndex is : {myindex3} */}
-      </div>
+    </div>
   )
 }
 
