@@ -28,7 +28,6 @@ function App() {
   //   if (ganbareCount > prev_ganbare){
   //     ganbare - 
   //   }
-    
   // }
 
   // indexをサーバに送りつける関数
