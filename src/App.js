@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.css';
 import Gauge from './Gauge';
 import MiniGauge from './MiniGauge';
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext, useRef} from 'react';
 import Monitor from './Monitor';
 import StartSupport from './StartSupport';
 import SendMyIndex from './SendMyIndex';
@@ -22,6 +22,7 @@ function App() {
   const [info, setInfo] = useState('応援してください')
   const [num_participants, setNumParticipants] = useState()
   const [aveIndex, setAveIndex] = useState()
+  const indexRef = useRef(0)
 
   // const ganbareChecker = () => {
   //   if (ganbareCount > prev_ganbare){
@@ -48,10 +49,13 @@ function App() {
     };
   }, []);
   
+  useEffect(() => {
+    indexRef.current = index
+  },[index])
 
   useEffect(() => {
     const interval = setInterval(() => {
-      sendmyindex(index)
+      sendmyindex(indexRef.current)
     }, 200);
     return () => clearInterval(interval);
   }, []);
