@@ -9,6 +9,7 @@ const AudioRecong = () => {
     transcript,
     listening,
     resetTranscript,
+    interimTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
@@ -25,14 +26,18 @@ const AudioRecong = () => {
   setGanbareCount(counts)
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return (
+      alert('このブラウザでは音声認識を利用できません。Chromeを使用してください。')
+    // <span>Browser doesn't support speech recognition.</span>;
+    )
   }
   // else{
   //   return
   // }
 
 SpeechRecognition.startListening({continuous: true, language: "ja"})
-console.log(transcript)
+console.log(`transcript is: ${transcript}`)
+console.log(`interim script is: ${interimTranscript}`)
 
   return (
     <div>      

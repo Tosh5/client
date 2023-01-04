@@ -12,10 +12,9 @@ import { GanbareCount } from './VoiceContext';
 import io from "socket.io-client";
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL)
 
-function App() {
-  // console.log('function App()が呼ばれたよ')
+let prev_ganbare = 0;
 
-  // const ganbareCount = useGanbareCount()
+function App() {
 
   const { ganbareCount, setGanbareCount } = useContext(GanbareCount)
 
@@ -24,8 +23,15 @@ function App() {
   const [num_participants, setNumParticipants] = useState()
   const [aveIndex, setAveIndex] = useState()
 
+  // const ganbareChecker = () => {
+  //   if (ganbareCount > prev_ganbare){
+  //     ganbare - 
+  //   }
+    
+  // }
+
   // indexをサーバに送りつける関数
-  const sendmyindex = async () =>{
+  const sendmyindex = async (index) =>{
     // console.log("サーバにindexを送信する!")
     await socket.emit("send_myindex" , index)
     // console.log('サーバにindexを送信したぜ!')
@@ -56,7 +62,7 @@ function App() {
         <h1 className='title'>チーム全体の応援</h1>
         <h3>チーム全体の応援熱量: {aveIndex}</h3>
         <h3>ガンバレカウンター{ganbareCount}</h3>
-        <SendMyIndex myindex={index}/>
+        {/* <SendMyIndex myindex={index}/> */}
 
         <Gauge score={index} />
         <StartSupport 

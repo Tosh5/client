@@ -3,23 +3,15 @@ import io from "socket.io-client";
 
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL)
 
-let myindex3 = 24 // マジで何の数字でも良い。
-
-const sendmyindex = async (props) =>{
+const sendmyindex = async (index) =>{
   // console.log(`current myindex is...... ${props}`)
-  await socket.emit("send_myindex" , props)
+  await socket.emit("send_myindex" , index)
 }
 
-
 function SendMyIndex(props) {
-  
-  useEffect(() => {
-    myindex3 = props.myindex
-  },[props.myindex])
-
   useEffect(() => {
     const interval = setInterval(() => {
-      sendmyindex(myindex3)
+      sendmyindex(props.myindex)
     }, 200);
     return () => clearInterval(interval);
   }, []);
