@@ -5,28 +5,26 @@ import { Camera } from '@mediapipe/camera_utils';
 import { Hands, Results } from '@mediapipe/hands';
 import { drawCanvas } from './drawCanvas';
 
+// const frames = 20; // 直近何フレームの動きの激しさを取得するか？
+// const scale = 30; // 取得した手の座標を何倍に拡大して激しさを取得するか？
 
-const frames = 20; // 直近何フレームの動きの激しさを取得するか？
-const scale = 30; // 取得した手の座標を何倍に拡大して激しさを取得するか？
-
-let gap_record = [...Array(frames)].map((_, i) => i);
-for (var i = 0; i < frames; i++){
-	gap_record[i] = 0;  // 0 で初期化
-}
-
+// const gap_record = [...Array(frames)].map((_, i) => i);
+// for (var i = 0; i < frames; i++){
+// 	gap_record[i] = 0;  // 0 で初期化
+// }
 
 
-export const additionalIndex = (additional_score) =>{
-	gap_record.splice(0,1);
-	gap_record.push(additional_score);
-}
+
+// export const additionalIndex = (additional_score) =>{
+// 	gap_record.splice(0,1);
+// 	gap_record.push(additional_score);
+// }
 
 
 
 const Monitor = (props) => {
 	const [index2, useIndex2] = useState(0)
 	props.useIndex(index2);
-	console.log('Monitor()動作中')
 
 	const webcamRef = useRef(null)
 	const canvasRef = useRef(null)
@@ -41,28 +39,25 @@ const Monitor = (props) => {
 	let dif_y = 0;
 	let distance = 0;
 
-	// const frames = 20; // 直近何フレームの動きの激しさを取得するか？
-	// const scale = 30; // 取得した手の座標を何倍に拡大して激しさを取得するか？
+	const frames = 20; // 直近何フレームの動きの激しさを取得するか？
+	const scale = 30; // 取得した手の座標を何倍に拡大して激しさを取得するか？
 
-	// const gap_record = [...Array(frames)].map((_, i) => i);
-	// for (var i = 0; i < frames; i++){
-	// 	gap_record[i] = 0;  // 0 で初期化
-	// }
-	// // 以上の、framesの定義からgap_recordの生成を、function Monitor 
-	// // の外でやると、下の2行が無限ループして、indexの値が発散してしまう。
+	const gap_record = [...Array(frames)].map((_, i) => i);
+	for (var i = 0; i < frames; i++){
+		gap_record[i] = 0;  // 0 で初期化
+	}
+	// 以上の、framesの定義からgap_recordの生成を、function Monitor 
+	// の外でやると、下の2行が無限ループして、indexの値が発散してしまう。
 
-	useEffect(()=>{
+	gap_record.splice(0,1);
+	gap_record.push(100);
+
+	const additional_score = 0
+
+	const additionalIndex = (additional_score) =>{
 		gap_record.splice(0,1);
-		gap_record.push(100);
-	},[])
-
-
-	// const additional_score = 0
-
-	// const additionalIndex = (additional_score) =>{
-	// 	gap_record.splice(0,1);
-	// 	gap_record.push(additional_score);
-	// }
+		gap_record.push(additional_score);
+	}
 	
 
 	
@@ -156,6 +151,7 @@ const Monitor = (props) => {
 	}
 
 	return (
+		[
 		<div className={styles.container}>
 			{/* capture */}
 			<Webcam
@@ -180,7 +176,7 @@ const Monitor = (props) => {
 				{/* <h3>{String(handC)}</h3>
 				<h3 className='index2'>{String(index2)}</h3> */}
 			</div>
-		</div>
+		</div>, additionalIndex()]
 	)
 }
 export default Monitor;

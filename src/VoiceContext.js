@@ -1,28 +1,17 @@
 import React, {useContext, useState, createContext} from 'react' 
 
-// const GanbareCount = React.createContext
-// const GanbareUpdater = React.createContext
-
-// export function useGanbareCount() {
-//     return useContext(GanbareCount)
-// }
-
-// export function useGanbareUpdater() {
-//     return useContext(GanbareUpdater)
-// }
-
 export const GanbareCount = createContext()
+// export const InterimCount = createContext()
 
 export function GanbareProvider({children}) {
     const [ganbareCount, setGanbareCount] = useState(0)
-
-    // function ganbareUpdater(given_value) {
-    //     setGanbareCount(given_value)
-    // }
+    // const [interim, setInterim] = useState(0)
 
     const value = {
         ganbareCount,
         setGanbareCount,
+        // interim,
+        // setInterim
     }
 
     return (
@@ -30,13 +19,5 @@ export function GanbareProvider({children}) {
             {children}
         </GanbareCount.Provider>
     )
-
-    // return (
-    //     <GanbareCount.Provider value = {ganbareCount}>
-    //         <GanbareUpdater.Provider value = {ganbareUpdater}>
-    //             {children}
-    //         </GanbareUpdater.Provider>
-    //     </GanbareCount.Provider>
-    // )
 }
 
