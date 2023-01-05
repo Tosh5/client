@@ -22,29 +22,19 @@ const AudioRecong = () => {
   var count3 = ( transcript.match( /ガンバレ/g ) || [] ).length ;
   var counts = count1+count2+count3
 
-  // const ganbareUpdate = useGanbareUpdater()
-  // ganbareUpdate(counts)
   setGanbareCount(counts)
 
-  var countInterim = ( interimTranscript.match( /頑張れ/g ) || [] ).length ;
-  // var count2 = ( transcript.match( /がんばれ/g ) || [] ).length ;
-  // var count3 = ( transcript.match( /ガンバレ/g ) || [] ).length ;
-  // var counts = count1+count2+count3
-
+  // var countInterim = ( interimTranscript.match( /頑張れ/g ) || [] ).length ;
   // setInterim(countInterim)
 
   if (!browserSupportsSpeechRecognition) {
     return (
       alert('このブラウザでは音声認識を利用できません。Chromeを使用してください。')
-    // <span>Browser doesn't support speech recognition.</span>;
     )
   }
-  // else{
-  //   return
-  // }
 
 SpeechRecognition.startListening({continuous: true, language: "ja"})
-// console.log(`transcript is: ${transcript}`)
+console.log(`transcript is: ${transcript}`)
 // console.log(`interim script is: ${interimTranscript}`)
 
   return (
