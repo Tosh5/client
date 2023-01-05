@@ -69,9 +69,6 @@ function App() {
   const [aveIndex, setAveIndex] = useState()
   const indexRef = useRef(0) // 過度なレンダリングを防ぐためuseRefを使用
 
-  const [voiceAdd, setVoiceAdd] = useState(0)
-  const voiceAddRef = useRef(0)
-
   // サーバからの信号を受信したら作動
   useEffect(() => {
     socket.on('receive_message2', function(aveIndex) {
@@ -100,13 +97,11 @@ function App() {
   }, []);
 
   useDidUpdateEffect(() => {
-    console.log("依存配列に変更がありました")
     additionalIndex(50)
     const cheerNotify = async () =>{
       voiceCheered = true
       await new Promise(s => setTimeout(s, 2000))
       voiceCheered = false
-      // setIndex((current) => (current + 50))
     }
     cheerNotify()
   }, [ganbareCount]);
@@ -121,7 +116,7 @@ function App() {
         {/* <button onClick={setIndexUp} >aaa</button> */}
         {/* <button onClick={setIndex((current) => (current + 50))}>aaa</button> */}
 
-        <Gauge score={index} />
+        <Gauge score={Math.round(aveIndex)} />
         <StartSupport 
           num_participants={num_participants}
           index={index}

@@ -4,8 +4,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import GaugeProvider from './GaugeProvider';
 
 const Guage = (props) => {
-  const { score } = props;
-
   // function for calculating the color
   const calcColor = (percent, start, end) => {
     let a = percent / 100,
@@ -23,9 +21,10 @@ const Guage = (props) => {
       marginRight: 'auto', marginLeft: 'auto', 
       // alignItems: 'left', alignContent: 'left'
     }}
-    // style={{width: '30vw', height: '40vh', marginRight: '5vw', marginLeft: 'auto', alignItems: 'right', alignContent: 'right'}}
+    // style={{width: '30vw', height: '40vh', marginRight: '5vw', 
+    // marginLeft: 'auto', alignItems: 'right', alignContent: 'right'}}
     >
-      <GaugeProvider valueStart={0} valueEnd={score}>
+      <GaugeProvider valueStart={0} valueEnd={props.score}>
         {(value) => (
           <CircularProgressbar
             value={value}
