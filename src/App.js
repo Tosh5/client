@@ -12,8 +12,6 @@ import {motion, useAnimation} from 'framer-motion'
 import io from "socket.io-client";
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL)
 
-let prev_ganbare = 0
-
 let voiceCheered = false;
 
 export function useDidUpdateEffect(fn, deps) {
@@ -27,8 +25,6 @@ export function useDidUpdateEffect(fn, deps) {
     }
   }, deps);
 }
-
-
 
 
 export const AnimateSample = () => (
@@ -52,9 +48,6 @@ export const AnimateSample = () => (
           window.innerWidth * 1]
       }
   }
-    
-    // initial={{opacity: 1}}
-    // exit={{opacity: 1}}
     transition={{
       duration: 2,
       times: [0, 0.15, 0.8, 1]
@@ -67,9 +60,6 @@ export const AnimateSample = () => (
 function App() {
 
   const { ganbareCount, setGanbareCount } = useContext(GanbareCount)
-  // const { interim, setInterim } = useContext(InterimCount)
-  // const [ voiceCheered, setVoiceCheered ] = useState(false) 
-  // 声援が入ればtrue。
 
   const controls = useAnimation()
 
@@ -81,12 +71,6 @@ function App() {
 
   const [voiceAdd, setVoiceAdd] = useState(0)
   const voiceAddRef = useRef(0)
-
-  // const ganbareChecker = () => {
-  //   if (ganbareCount > prev_ganbare){
-  //     ganbare - 
-  //   }
-  // }
 
   // サーバからの信号を受信したら作動
   useEffect(() => {
@@ -114,45 +98,6 @@ function App() {
     return () => clearInterval(interval);
     // アンマウント時にsetIntervalを解除してくれる
   }, []);
-
-  // useEffect(() =>{
-  //   voiceCheered = !voiceCheered;
-  //   // () => controls.start({ x: [0, 100, 50] })
-  //   controls.start({ x: [0, 100, 50] })
-  //   // return () => voiceCheered = !voiceCheered;
-  // },[ganbareCount])
-
-
-  // これは良さげなコード
-  // useEffect(() =>{
-  //   const cheerNotify = async () =>{
-  //     voiceCheered = true
-  //     await new Promise(s => setTimeout(s, 2000))
-  //     voiceCheered = false
-  //     // setIndex((current) => (current + 50))
-  //   }
-  //   cheerNotify()
-  // },[ganbareCount])
-
-  // voiceCheered = false
-
-
-  // useEffect(() =>{
-  //   console.log(interim)
-  //   voiceCheered = !voiceCheered;
-
-  //   // return () => voiceCheered = !voiceCheered;
-  // },[interim])
-
-  // useEffect(() => {
-  //   voiceAddRef.current = voiceAdd
-  // },[voiceAdd])
-
-  
-
-  // const setIndexUp = () =>{
-  //   additionalIndex(50);
-  // }
 
   useDidUpdateEffect(() => {
     console.log("依存配列に変更がありました")
@@ -200,8 +145,6 @@ function App() {
         </div>
         <AnimateSample />
       </div>
-
-
     </div>
   );
 }
