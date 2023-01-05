@@ -156,6 +156,13 @@ function App() {
   useDidUpdateEffect(() => {
     console.log("依存配列に変更がありました")
     additionalIndex(50)
+    const cheerNotify = async () =>{
+      voiceCheered = true
+      await new Promise(s => setTimeout(s, 2000))
+      voiceCheered = false
+      // setIndex((current) => (current + 50))
+    }
+    cheerNotify()
   }, [ganbareCount]);
 
 
